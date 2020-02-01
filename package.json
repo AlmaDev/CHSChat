@@ -1,0 +1,19 @@
+{
+  "name": "chschatroom",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlmaDev/CHSChatRoom.git"
+  },
+  "author": "Damir Fell",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlmaDev/CHSChatRoom/issues"
+  },
+  "homepage": "https://github.com/AlmaDev/CHSChatRoom#readme"
+}
