@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CHS Chat Room Admin Panel</title>
+    <link
+      rel="icon"
+      href="https://www.shareicon.net/data/256x256/2016/05/03/759268_message_512x512.png"
+    />
+  </head>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    var socket = io();
+    function sendMessage() {
+      var msg = document.getElementById("message").value;
+      socket.emit("messages", "Server: " + msg);
+    }
+  </script>
+
+  <body>
+    <div id="error-container"></div>
+
+    <input type="text" id="message" />
+    <button type="button" name="button" onclick="sendMessage()">Send</button>
+    <div id="message-container"></div>
+  </body>
+</html>
