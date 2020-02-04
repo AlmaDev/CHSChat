@@ -47,9 +47,8 @@
     </style>
   </head>
   <body>
-    <ul id="messages"></ul>
-    <form action="">
-      <input id="m" autocomplete="off" /><button>Send</button>
+    <form action="index.html" method="get">
+      <input id="m" autocomplete="off" /><button>Login</button>
     </form>
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
@@ -57,16 +56,17 @@
       $(function() {
         var socket = io();
         $("form").submit(function() {
-          socket.emit("chat message", $("#m").val());
+          socket.emit("setUsername", $("#m").val());
           $("#m").val("");
-          return false;
         });
-        socket.on("chat message", function(msg) {
-          if (msg) {
-            $("#messages").append($("<li>").text(msg));
-            window.scrollTo(0, document.body.scrollHeight);
-          }
-        });
+        socket.on('userSet', (data) => {
+          console.log('Login');
+          user = data.username;
+          socket.emit('login', user);
+        })
+        socket.on('userExists', (data) => {
+          alert(data);
+        })
       });
     </script>
   </body>
