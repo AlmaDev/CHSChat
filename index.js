@@ -4,8 +4,6 @@ var io = require('socket.io')(http);
 var bodyParser = require('body-parser');
 var port = process.env.PORT || 3000;
 
-let users = {};
-
 app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({
@@ -14,7 +12,7 @@ app.use(bodyParser.urlencoded({
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/login.html');
-})
+});
 
 app.post("/chat", (req, res) => {
   res.cookie('name', req.body.username);
@@ -22,20 +20,20 @@ app.post("/chat", (req, res) => {
 });
 
 function getCookie(cookie) {
-  var cookiearray = cookie.split(';');
-  for (var i = 1; i < cookiearray.length; i++) {
-    name = cookiearray[i].split('=')[0];
-    value = cookiearray[i].split('=')[1];
-    return value;
+  var cookiearray = cookie.split('=');
+  for (var i = 0; i < cookiearray.length; i++) {
+    if (cookiearray[i].includes('name')) {
+      return cookiearray[i + 1].split(" ")[0].replace(";", "");
+    }
   }
 }
 
 
 io.sockets.on('connection', function (socket) {
+  var name = getCookie(socket.handshake.headers['cookie']);
+  socket.emit("chat message", `User ${name} has joined the chat`)
   socket.on('chat message', function (msg) {
-    console.log(socket.handshake.headers['cookie']);
-    console.log(getCookie(socket.handshake.headers['cookie']));
-    io.emit('chat message', getCookie(socket.handshake.headers['cookie']) + ":   " + msg);
+    io.emit('chat message', name + ":   " + msg);
   });
 });
 
