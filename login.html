@@ -1,70 +1,87 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>CHS Chat - Login</title>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font: 13px Noto Sans, sans-serif;
+      }
+      form {
+        padding: 3px;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+      }
+      form input {
+        border: 0;
+        padding: 10px;
+        width: 70%;
+        margin-right: 0.5%;
+      }
+      form button {
+        width: 100%;
+        background: rgb(130, 224, 255);
+        border: none;
+        padding: 10px;
+      }
+    </style>
+  </head>
 
-<head>
-  <title>CHS Chat</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font: 13px Helvetica, Arial;
-    }
-
-    form {
-      background: #000;
-      padding: 3px;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-    }
-
-    form input {
-      border: 0;
-      padding: 10px;
-      width: 90%;
-      margin-right: 0.5%;
-    }
-
-    form button {
-      width: 9%;
-      background: rgb(130, 224, 255);
-      border: none;
-      padding: 10px;
-    }
-
-    #messages {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    #messages li {
-      padding: 5px 10px;
-    }
-
-    #messages li:nth-child(odd) {
-      background: #eee;
-    }
-
-    #messages {
-      margin-bottom: 40px;
-    }
-  </style>
-</head>
-
-<body>
-  <div id='error-container'></div>
-  <form action="/chat" method="POST">
-    <input name="username" id="m" autocomplete="off" /><button>Login</button>
-  </form>
-  <script src="/socket.io/socket.io.js"></script>
-  <script>
-    var socket = io();
-  </script>
-</body>
-
+  <body>
+    <div id="error-container"></div>
+    <form action="/chat" method="POST">
+      <div class="input-group mb-3">
+        <input
+          name="username"
+          id="m"
+          autocomplete="off"
+          type="text"
+          class="form-control"
+          placeholder="Name..."
+          aria-label="Name..."
+          aria-describedby="button-addon2"
+        />
+        <div class="input-group-append">
+          <button
+            name="username"
+            class="btn btn-outline-secondary"
+            type="button"
+            id="button-addon2"
+          >
+            Login
+          </button>
+        </div>
+      </div>
+    </form>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io();
+    </script>
+  </body>
 </html>
